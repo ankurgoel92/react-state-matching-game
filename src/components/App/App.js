@@ -8,6 +8,7 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       numTiles: 36,
       playing: false,
@@ -16,6 +17,14 @@ class App extends Component {
       toBeCleared: null,
     };
   }
+
+  handleNumTileChange = (num) => {
+    this.setState({
+      numTiles: num,
+      playing: false,
+      tiles: [],
+    });
+  };
 
   handleTileClicked = (id, color) => {
     this.setState((state) => {
@@ -69,6 +78,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">Turbo-Matcher</header>
         <OptionsPanel
+          handleNumTileChange={this.handleNumTileChange}
           playing={this.state.playing}
           numTiles={this.state.numTiles}
           startGame={this.startGame}
